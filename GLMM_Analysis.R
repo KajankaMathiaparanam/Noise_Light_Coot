@@ -106,8 +106,8 @@ names(Model_df) <- c(Model_df_cols)
 
 # Create folder for model summary csv and plots
 Plot_folder_name <- str_replace_all(paste("GLMM_", Sys.time(), sep = ""), ":", "-")
-Ouput_path <- paste(curdir, "/Model_Outputs/", Plot_folder_name, sep = "")
-dir.create(Ouput_path)
+Output_path <- paste(curdir, "/Model_Outputs/", Plot_folder_name, sep = "")
+dir.create(Output_path)
 
 
 #### 4) Subsetting, cleaning and transformation ####
@@ -388,9 +388,7 @@ for (i in 1:length(Pred_var_rename)) {
   assign(paste0("Resp_Pred_Matrix_", i), Resp_Pred_Matrix)
   
   # Save the predictor-response matrix as a csv
-  dir.create(paste(Ouput_path, "/Pred_Resp_Matrices", sep = ""))
-  write.csv(Resp_Pred_Matrix, file = paste(Ouput_path, "/Pred_Resp_Matrices/GLMM_Prediction_", Bird_Species, "_",
-                                           Resp_var, "_", Pred_var_rename[i], ".csv", sep = ""), quote = F, row.names = F)
+  write.csv(Resp_Pred_Matrix, file = paste(Output_path, "/GLMM_Prediction_", Pred_var_rename[i], ".csv", sep = ""), quote = F, row.names = F)
 }
 
 
@@ -444,15 +442,13 @@ for (temp_col in 1:length(Pred_trans)) {
 Int_Resp_Pred_Matrix <- Int_Resp_Pred_Matrix %>% select(Int_preds, Int_Resp_names)
 
 # Save the predictor-response matrix as a csv
-write.csv(Int_Resp_Pred_Matrix, file = paste(Ouput_path, "/Pred_Resp_Matrices/GLMM_Prediction_", Bird_Species, "_",
-                                       Resp_var, "_Int_NL", ".csv", sep = ""), quote = F, row.names = F)
+write.csv(Int_Resp_Pred_Matrix, file = paste(Output_path, "/GLMM_Prediction_NoiseLight_Interactive.csv", sep = ""), quote = F, row.names = F)
 
 
 #### 9)  Save plots ####
 
 # Save pdf
-dir.create(paste(Ouput_path, "/Plots", sep = ""))
-pdf(paste(Ouput_path, "/Plots/", Bird_Species, "_", Resp_var, ".pdf", sep = ""))
+pdf(paste(Output_path, "/GLMM_Plots.pdf", sep = ""))
 
 # Plot the predicted response curves
 for (i in 1:length(Pred_var_rename)) {
@@ -504,7 +500,7 @@ dev.off()
 names(Model_df) <- c(Model_df_cols)
 
 # write dataframe
-write.csv(Model_df, file = paste(Ouput_path, "/GLMM_Summary_Master.csv", sep = ""), quote = F, row.names = F)
+write.csv(Model_df, file = paste(Output_path, "/GLMM_Summary.csv", sep = ""), quote = F, row.names = F)
 
 
 #### End ####
