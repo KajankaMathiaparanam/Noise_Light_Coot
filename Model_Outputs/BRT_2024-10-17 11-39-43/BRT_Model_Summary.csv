@@ -1,0 +1,11 @@
+,Value
+Learning_rate,0.001
+Tree_complexity,2
+Bag_fraction,0.5
+Trees_n,1900
+Lmean_influence,29.31
+Noise_influence,0.92
+WB_Area_influence,51.41
+Temperature_influence,9.13
+Rainfall_influence,9.23
+Light_Noise_Interaction,NA

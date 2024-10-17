@@ -114,8 +114,8 @@ dir.create(Output_path)
 
 # Filter by species (and survey type), and select response and predictor columns
 BLA_data_temp <- BLA_data %>%
-filter(Common_Name %in% Bird_Species & Survey_Type %in% "Area") %>%
-dplyr::select(all_of(c("Lat", "Lon", Resp_var, Pred_var, Random_var)))
+  filter(Common_Name %in% Bird_Species & Survey_Type %in% "Area") %>% 
+  dplyr::select(all_of(c("Lat", "Lon", Resp_var, Pred_var, Random_var)))
 
 # Remove all NA's
 BLA_data_temp <- na.omit(BLA_data_temp)
